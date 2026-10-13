@@ -1,0 +1,31 @@
+<section class="container section auth-wrap">
+  <div class="auth-card">
+    <h1>Create your account</h1>
+    <p class="muted">Register to build a cart and place orders.</p>
+    <div class="alert alert-error">{{error}}</div>
+    <form method="post" action="/register" class="form">
+      <label>Full name
+        <input type="text" name="name" value="{{name}}" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" value="{{email}}" required>
+      </label>
+      <div class="form-row">
+        <label>Password
+          <input type="password" name="password" minlength="6" required>
+        </label>
+        <label>Confirm password
+          <input type="password" name="confirm" minlength="6" required>
+        </label>
+      </div>
+      <label>Phone
+        <input type="text" name="phone" value="{{phone}}">
+      </label>
+      <label>Delivery address
+        <textarea name="address" rows="2">{{address}}</textarea>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+    <p class="auth-alt">Already have an account? <a href="/login">Log in</a></p>
+  </div>
+</section>

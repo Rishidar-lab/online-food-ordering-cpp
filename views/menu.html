@@ -1,0 +1,16 @@
+<section class="container section">
+  <div class="menu-head">
+    <h1 class="page-title">Our Menu</h1>
+    <form class="search" method="get" action="/menu" role="search">
+      <input type="text" name="q" value="{{search}}" placeholder="Search dishes…" aria-label="Search">
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+  </div>
+
+  <div class="chips">{{&chips}}</div>
+  <p class="result-note">{{result_count}} item(s) found</p>
+
+  <div class="card-grid">{{&cards}}</div>
+
+  {{&pager}}
+</section>

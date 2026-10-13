@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <rect width="600" height="450" fill="#f1e9df"/>
+  <circle cx="300" cy="225" r="120" fill="#fff" stroke="#e0d4c6" stroke-width="6"/>
+  <circle cx="300" cy="225" r="80" fill="#f6efe6"/>
+  <path d="M150 120v70a20 20 0 0040 0v-70M160 120v60M180 120v60" stroke="#d8c6b2" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M450 120c-18 0-30 25-30 55s12 40 30 40 30-10 30-40-12-55-30-55z" fill="none" stroke="#d8c6b2" stroke-width="7" stroke-linecap="round"/>
+  <text x="300" y="400" font-family="Segoe UI, sans-serif" font-size="26" fill="#b7a593" text-anchor="middle">Tasty Bites</text>
+</svg>

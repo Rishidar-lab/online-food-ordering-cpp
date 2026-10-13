@@ -1,0 +1,28 @@
+<div class="admin-split">
+  <div class="card-box form-box">
+    <h3>{{form_title}}</h3>
+    <form method="post" action="/admin/user/save" class="form">
+      <input type="hidden" name="id" value="{{f_id}}">
+      <label>Username<input type="text" name="username" value="{{f_username}}" required></label>
+      <label>Full name<input type="text" name="full_name" value="{{f_fullname}}"></label>
+      <label>Role
+        <select name="role">
+          <option value="admin" {{f_role_admin}}>Administrator</option>
+          <option value="staff" {{f_role_staff}}>Staff</option>
+        </select>
+      </label>
+      <label>Password<input type="password" name="password" minlength="6"></label>
+      <small class="muted">{{pw_hint}}</small>
+      <button class="btn btn-primary btn-block" type="submit">Save user</button>
+      <a class="btn btn-ghost btn-block" href="/admin/users">Clear form</a>
+    </form>
+  </div>
+
+  <div class="card-box">
+    <div class="box-head"><h3>Staff &amp; administrators</h3></div>
+    <table class="data-table">
+      <thead><tr><th>Username</th><th>Full name</th><th>Role</th><th>Actions</th></tr></thead>
+      <tbody>{{&rows}}</tbody>
+    </table>
+  </div>
+</div>

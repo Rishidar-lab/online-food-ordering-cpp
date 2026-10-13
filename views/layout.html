@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} &middot; {{system_name}}</title>
+  <meta name="description" content="{{system_name}} — order food online.">
+  <!-- Bootstrap 5 + jQuery (as per the project stack). The site also ships its
+       own stylesheet so it remains usable if the CDN is unavailable. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="icon" href="/public/img/placeholder.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">&#127828;</span>
+        <span class="brand-name">{{system_name}}</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" onclick="document.body.classList.toggle('nav-open')">&#9776;</button>
+      <nav class="main-nav">{{&nav}}</nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    {{&content}}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>{{system_name}}</h4>
+        <p>{{address}}</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>{{contact_phone}}<br>{{contact_email}}</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <p><a href="/menu">Menu</a> &middot; <a href="/about">About</a> &middot;
+           <a href="/admin/login">Staff login</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; {{year}} {{system_name}}. Built in C++.</div>
+  </footer>
+
+  <!-- Product details pop-up panel (populated by AJAX) -->
+  <div class="modal-overlay" id="product-modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <div class="modal-media"><img id="pm-img" src="" alt=""></div>
+      <div class="modal-body">
+        <span class="card-cat" id="pm-cat"></span>
+        <h3 id="pm-name"></h3>
+        <p class="price" id="pm-price"></p>
+        <p id="pm-desc"></p>
+        <div class="modal-actions">
+          <div class="qty-picker">
+            <button type="button" onclick="pmQty(-1)">&minus;</button>
+            <input id="pm-qty" value="1" readonly>
+            <button type="button" onclick="pmQty(1)">+</button>
+          </div>
+          <button class="btn btn-primary" id="pm-add">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="/public/js/app.js"></script>
+</body>
+</html>

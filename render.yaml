@@ -1,0 +1,17 @@
+# Render.com blueprint — one-click deploy of the C++ food-ordering app.
+# Render reads this on "New > Blueprint" and builds the Dockerfile for free.
+services:
+  - type: web
+    name: online-food-ordering-cpp
+    runtime: docker
+    plan: free                 # free web service (sleeps after ~15 min idle)
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: OFOS_HOST
+        value: 0.0.0.0
+      # Render injects PORT automatically; the app binds it.
+      # Note: the free plan has an ephemeral filesystem, so the SQLite DB
+      # resets on each deploy/restart and the app re-seeds the sample menu.
+      # To persist data, attach a Render Disk (paid) mounted at /app/data.

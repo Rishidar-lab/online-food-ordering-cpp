@@ -1,0 +1,10 @@
+# build output
+/build/
+/ofos
+# runtime database
+/data/*.db
+/data/*.db-wal
+/data/*.db-shm
+# user uploads (keep the directory, not its contents)
+/public/uploads/*
+!/public/uploads/.gitkeep

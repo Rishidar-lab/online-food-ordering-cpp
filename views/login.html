@@ -1,0 +1,18 @@
+<section class="container section auth-wrap">
+  <div class="auth-card">
+    <h1>Welcome back</h1>
+    <p class="muted">Log in to your account to continue.</p>
+    <div class="alert alert-error">{{error}}</div>
+    <form method="post" action="/login" class="form">
+      <input type="hidden" name="next" value="{{next}}">
+      <label>Email
+        <input type="email" name="email" value="{{email}}" required autofocus>
+      </label>
+      <label>Password
+        <input type="password" name="password" required>
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Log in</button>
+    </form>
+    <p class="auth-alt">New here? <a href="/register">Create an account</a></p>
+  </div>
+</section>

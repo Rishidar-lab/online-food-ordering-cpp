@@ -1,0 +1,35 @@
+<div class="admin-split">
+  <div class="card-box form-box">
+    <h3>{{form_title}}</h3>
+    <form method="post" action="/admin/product/save" enctype="multipart/form-data" class="form">
+      <input type="hidden" name="id" value="{{f_id}}">
+      <label>Name<input type="text" name="name" value="{{f_name}}" required></label>
+      <label>Category
+        <select name="category_id" required>{{&options}}</select>
+      </label>
+      <label>Price<input type="number" name="price" step="0.01" min="0" value="{{f_price}}" required></label>
+      <label>Description<textarea name="description" rows="3">{{f_description}}</textarea></label>
+      <label>Availability
+        <select name="status">
+          <option value="1" {{f_status_av}}>Available</option>
+          <option value="0" {{f_status_hi}}>Hidden</option>
+        </select>
+      </label>
+      <label>Image
+        <input type="file" name="image" accept="image/*">
+        <small class="muted">PNG/JPG/GIF/SVG. Leave empty to keep the current image.</small>
+      </label>
+      <div class="current-img" style="background-image:url('{{&current_image}}')"></div>
+      <button class="btn btn-primary btn-block" type="submit">Save product</button>
+      <a class="btn btn-ghost btn-block" href="/admin/products">Clear form</a>
+    </form>
+  </div>
+
+  <div class="card-box">
+    <div class="box-head"><h3>Products</h3></div>
+    <table class="data-table">
+      <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody>{{&rows}}</tbody>
+    </table>
+  </div>
+</div>

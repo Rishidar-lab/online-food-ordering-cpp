@@ -1,0 +1,20 @@
+<section class="container section">
+  <h1 class="page-title">Your Cart</h1>
+  <div class="cart-wrap">
+    <div class="cart-table-wrap">
+      <table class="cart-table">
+        <thead>
+          <tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th><th></th></tr>
+        </thead>
+        <tbody id="cart-body">{{&rows}}</tbody>
+      </table>
+    </div>
+    <aside class="cart-summary">
+      <h3>Order summary</h3>
+      <div class="summary-line"><span>Total</span>
+        <strong>{{currency}} <span id="cart-total">{{total}}</span></strong></div>
+      <a class="btn btn-primary btn-block {{checkout_disabled}}" href="/checkout" id="checkout-btn">Proceed to checkout</a>
+      <a class="btn btn-ghost btn-block" href="/menu">Continue shopping</a>
+    </aside>
+  </div>
+</section>

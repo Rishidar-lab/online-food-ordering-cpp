@@ -1,0 +1,20 @@
+<div class="admin-split">
+  <div class="card-box form-box">
+    <h3>{{form_title}}</h3>
+    <form method="post" action="/admin/category/save" class="form">
+      <input type="hidden" name="id" value="{{f_id}}">
+      <label>Name<input type="text" name="name" value="{{f_name}}" required></label>
+      <label>Description<textarea name="description" rows="3">{{f_description}}</textarea></label>
+      <button class="btn btn-primary btn-block" type="submit">Save category</button>
+      <a class="btn btn-ghost btn-block" href="/admin/categories">Clear form</a>
+    </form>
+  </div>
+
+  <div class="card-box">
+    <div class="box-head"><h3>Categories</h3></div>
+    <table class="data-table">
+      <thead><tr><th>Name</th><th>Description</th><th>Products</th><th>Actions</th></tr></thead>
+      <tbody>{{&rows}}</tbody>
+    </table>
+  </div>
+</div>

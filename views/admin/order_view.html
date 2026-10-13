@@ -1,0 +1,29 @@
+<a class="btn btn-sm" href="/admin/orders">&larr; Back to orders</a>
+<div class="order-detail">
+  <div class="card-box">
+    <div class="box-head">
+      <h3>{{o_order_number}}</h3>
+      <span class="status status-{{status_lower}}" id="detail-status">{{o_status}}</span>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th></tr></thead>
+      <tbody>{{&lines}}</tbody>
+      <tfoot><tr><td colspan="3" class="right"><strong>Total</strong></td><td><strong>{{total_fmt}}</strong></td></tr></tfoot>
+    </table>
+  </div>
+
+  <aside class="card-box">
+    <h3>Customer</h3>
+    <p><strong>{{o_customer_name}}</strong><br>{{o_phone}}</p>
+    <p><strong>Deliver to</strong><br>{{o_address}}</p>
+    <p><strong>Payment</strong><br>{{o_payment_method}}</p>
+    <p><strong>Placed</strong><br>{{o_created_at}}</p>
+    <p class="order-note">{{o_note}}</p>
+    <h4>Update status</h4>
+    <div class="status-actions" data-id="{{o_id}}">
+      <button class="btn btn-sm btn-primary" onclick="setStatus({{o_id}},'Confirmed',this)">Confirm</button>
+      <button class="btn btn-sm" onclick="setStatus({{o_id}},'Completed',this)">Complete</button>
+      <button class="btn btn-sm btn-danger" onclick="setStatus({{o_id}},'Cancelled',this)">Cancel</button>
+    </div>
+  </aside>
+</div>

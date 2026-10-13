@@ -1,0 +1,22 @@
+<div class="alert alert-success">{{saved}}</div>
+<div class="card-box form-box wide">
+  <h3>Site settings</h3>
+  <form method="post" action="/admin/settings/save" enctype="multipart/form-data" class="form">
+    <label>System name<input type="text" name="system_name" value="{{system_name}}" required></label>
+    <div class="form-row">
+      <label>Contact email<input type="email" name="contact_email" value="{{contact_email}}"></label>
+      <label>Contact phone<input type="text" name="contact_phone" value="{{contact_phone}}"></label>
+    </div>
+    <div class="form-row">
+      <label>Currency symbol<input type="text" name="currency" value="{{currency}}" maxlength="5"></label>
+      <label>Address<input type="text" name="address" value="{{address}}"></label>
+    </div>
+    <label>About us<textarea name="about_us" rows="4">{{about_us}}</textarea></label>
+    <label>Cover image
+      <input type="file" name="cover_image" accept="image/*">
+      <small class="muted">Shown on the home and about pages. Leave empty to keep the current image.</small>
+    </label>
+    <div class="current-img wide-img" style="background-image:url('{{&cover_url}}')"></div>
+    <button class="btn btn-primary" type="submit">Save settings</button>
+  </form>
+</div>

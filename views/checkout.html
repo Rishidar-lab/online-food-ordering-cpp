@@ -1,0 +1,28 @@
+<section class="container section">
+  <h1 class="page-title">Checkout</h1>
+  <div class="checkout-wrap">
+    <form class="checkout-form card-box" id="checkout-form">
+      <h3>Delivery details</h3>
+      <div class="alert alert-error" id="checkout-error"></div>
+      <label>Full name<input type="text" name="name" value="{{name}}" required></label>
+      <label>Phone<input type="text" name="phone" value="{{phone}}" required></label>
+      <label>Delivery address<textarea name="address" rows="3" required>{{address}}</textarea></label>
+      <label>Payment method
+        <select name="payment_method">
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="UPI on Delivery">UPI on Delivery</option>
+          <option value="Card on Delivery">Card on Delivery</option>
+        </select>
+      </label>
+      <label>Order note (optional)<textarea name="note" rows="2" placeholder="e.g. less spicy, ring the bell"></textarea></label>
+      <button class="btn btn-primary btn-block" type="submit" id="place-btn">Place order</button>
+    </form>
+
+    <aside class="cart-summary card-box">
+      <h3>Order summary</h3>
+      <ul class="summary-list">{{&summary}}</ul>
+      <div class="summary-line total-line"><span>Total</span>
+        <strong>{{currency}} {{total}}</strong></div>
+    </aside>
+  </div>
+</section>

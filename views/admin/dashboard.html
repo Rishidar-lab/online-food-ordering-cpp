@@ -1,0 +1,18 @@
+<p class="welcome">Welcome back, <strong>{{admin_name}}</strong>.</p>
+
+<div class="stat-grid">
+  <div class="stat"><span class="stat-label">Total orders</span><span class="stat-num">{{count_orders}}</span></div>
+  <div class="stat stat-accent"><span class="stat-label">Pending</span><span class="stat-num">{{count_pending}}</span></div>
+  <div class="stat"><span class="stat-label">Products</span><span class="stat-num">{{count_products}}</span></div>
+  <div class="stat"><span class="stat-label">Categories</span><span class="stat-num">{{count_categories}}</span></div>
+  <div class="stat"><span class="stat-label">Customers</span><span class="stat-num">{{count_customers}}</span></div>
+  <div class="stat stat-wide"><span class="stat-label">Revenue (confirmed + completed)</span><span class="stat-num">{{revenue}}</span></div>
+</div>
+
+<div class="card-box">
+  <div class="box-head"><h3>Recent orders</h3><a class="btn btn-sm" href="/admin/orders">All orders</a></div>
+  <table class="data-table">
+    <thead><tr><th>Order #</th><th>Customer</th><th>Total</th><th>Status</th><th>Placed</th></tr></thead>
+    <tbody>{{&recent_orders}}</tbody>
+  </table>
+</div>
