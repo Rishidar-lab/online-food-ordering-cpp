@@ -12,6 +12,23 @@ written from scratch in standard C++17, with SQLite as the embedded relational
 engine. Nothing is pseudocode; it compiles, runs, and passes an automated
 28-case test suite.
 
+## Deploy (free, hosted)
+
+The app ships as a Docker container, so it runs on any free container host.
+One-click deploy to **Koyeb** (free tier stays awake — good for a live demo):
+
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/Rishidar-lab/online-food-ordering-cpp&branch=main&builder=dockerfile&instance_type=free&ports=8080;http;/&name=online-food-ordering-cpp)
+
+Sign in with GitHub, keep the defaults (Dockerfile builder, port `8080`, Free
+instance), set the health-check path to `/healthz`, and deploy. You get a public
+`https://…koyeb.app` URL — store at `/`, admin at `/admin/login`
+(`admin` / `admin123`). Full steps and other hosts (Render, Fly.io, Cloud Run)
+are in [`docs/DEPLOY.md`](docs/DEPLOY.md).
+
+> On free tiers the filesystem is ephemeral, so the SQLite database resets on
+> each redeploy and the app re-seeds the sample menu + default admin — ideal for
+> a demo. Mount a volume at `/app/data` to persist it.
+
 ---
 
 ## 1. Feature overview
