@@ -27,7 +27,10 @@ are in [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 > On free tiers the filesystem is ephemeral, so the SQLite database resets on
 > each redeploy and the app re-seeds the sample menu + default admin — ideal for
-> a demo. Mount a volume at `/app/data` to persist it.
+> a demo. **For permanent data, deploy to Fly.io** (Option C in
+> [`docs/DEPLOY.md`](docs/DEPLOY.md)): the included `fly.toml` mounts a free
+> persistent volume at `/data`, so the database and uploaded images survive
+> redeploys (verified).
 
 ---
 

@@ -59,18 +59,39 @@ visit — fine for a demo.
 
 ---
 
-## Option C — Fly.io  *(CLI deploy, no GitHub needed; volumes for persistence)*
+## Option C — Fly.io  *(CLI deploy; FREE persistent volume — data survives redeploys)*
+
+This repo includes a ready `fly.toml` that mounts a persistent volume at
+`/data`, so the SQLite database **and uploaded images persist** across
+restarts and redeploys (verified locally). Steps:
 
 ```bash
-curl -L https://fly.io/install.sh | sh      # install flyctl
-fly auth signup                             # or: fly auth login
-fly launch --no-deploy --name my-ofos       # detects the Dockerfile
-fly volumes create ofosdata --size 1        # optional: persistent SQLite
-# then in fly.toml add a [mounts] entry: source="ofosdata" destination="/app/data"
+# 1. Install the CLI and log in (free account; a payment card is required on file).
+curl -L https://fly.io/install.sh | sh
+fly auth login                      # or: fly auth signup
+
+# 2. Register the app from the bundled fly.toml — do NOT deploy yet.
+#    App names are global: if "online-food-ordering-cpp" is taken, fly will
+#    offer a new name — accept it (it updates fly.toml).
+fly launch --copy-config --no-deploy
+
+# 3. Create the FREE 1 GB volume the config expects.
+#    The volume name must be "ofos_data" and its region must match
+#    primary_region in fly.toml (default "sin" = Singapore).
+fly volumes create ofos_data --size 1 --region sin
+
+# 4. Deploy, then open the public HTTPS URL.
 fly deploy
+fly open                            # -> https://<app>.fly.dev
 ```
 
-Fly injects `$PORT=8080` via `internal_port`; set it in `fly.toml` if prompted.
+- Store: `/`  ·  Admin: `/admin/login`  (`admin` / `admin123`)
+- Because a volume is attached, run **one** machine (the config scales to zero
+  when idle and wakes on request). To keep it always warm, set
+  `min_machines_running = 1` in `fly.toml`.
+- The database lives at `/data/ofos.db` and uploads at `/data/uploads` on the
+  volume; neither resets on redeploy. To wipe and re-seed, destroy the volume
+  (`fly volumes list` → `fly volumes destroy <id>`) and recreate it.
 
 ---
 

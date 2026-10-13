@@ -1,0 +1,43 @@
+# Fly.io configuration — Online Food Ordering System (C++)
+# Deploy with a FREE persistent volume so the SQLite database and uploaded
+# images survive restarts and redeploys.
+#
+#   NOTE: `app` must be globally unique on Fly. If this name is taken, change
+#   it here (and in the `fly volumes create` command) or run `fly launch`,
+#   which merges this file and picks an available name.
+
+app = "online-food-ordering-cpp"
+primary_region = "sin"          # Singapore (close to India); change if you like
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  OFOS_HOST = "0.0.0.0"
+  PORT = "8080"
+  OFOS_DIR = "/app"
+  OFOS_PERSIST_DIR = "/data"    # the mounted volume
+  OFOS_DB = "/data/ofos.db"     # database on the persistent volume
+
+# The persistent volume (created separately — see docs/DEPLOY.md).
+[[mounts]]
+  source = "ofos_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"   # scale to zero when idle (stays within free allowance)
+  auto_start_machines = true    # wake on the next request
+  min_machines_running = 0      # set to 1 to keep it always warm (still free-tier friendly)
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "3s"
+    grace_period = "8s"
+    method = "GET"
+    path = "/healthz"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"              # ample for this lightweight C++ server
