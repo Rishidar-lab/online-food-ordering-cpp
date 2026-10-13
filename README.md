@@ -34,6 +34,25 @@ are in [`docs/DEPLOY.md`](docs/DEPLOY.md).
 > persistent volume at `/data`, so the database and uploaded images survive
 > redeploys (verified).
 
+### Run it live on GitHub (Codespaces)
+
+This is a C++ **server**, so GitHub **Pages cannot run it** (Pages serves only
+static files; there is no backend to handle login, cart, checkout or the admin
+panel). To run the real app on GitHub's own infrastructure, use **Codespaces**:
+
+1. On the repo page: **Code ▸ Codespaces ▸ Create codespace on main**.
+2. The dev container auto-installs the toolchain and compiles. In the terminal:
+   ```bash
+   make run
+   ```
+3. Click **Open in Browser** on the forwarded port **8080**. To share the URL
+   with others, open the **Ports** tab, right-click port 8080 ▸
+   **Port Visibility ▸ Public**.
+
+The codespace runs the full application (storefront + admin). It stays live
+while the codespace is running; GitHub's free tier includes monthly codespace
+hours for personal accounts.
+
 ---
 
 ## 1. Feature overview

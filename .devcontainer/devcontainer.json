@@ -1,0 +1,23 @@
+{
+  "name": "Online Food Ordering System (C++)",
+  "image": "mcr.microsoft.com/devcontainers/base:debian-12",
+
+  // Install the build toolchain + SQLite, then compile once on creation.
+  "onCreateCommand": "sudo apt-get update && sudo apt-get install -y --no-install-recommends g++ make libsqlite3-dev",
+  "postCreateCommand": "make",
+
+  // The app serves on 8080; Codespaces forwards it and offers a public URL.
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Food Ordering App",
+      "onAutoForward": "openPreview"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.cpptools"]
+    }
+  }
+}
