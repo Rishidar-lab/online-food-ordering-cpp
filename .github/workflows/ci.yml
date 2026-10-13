@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    name: Build & run 28-case test suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends g++ make libsqlite3-dev curl
+
+      - name: Compile (treat warnings seriously)
+        run: make
+
+      - name: Run end-to-end test suite (28 cases)
+        run: bash tests/run_tests.sh
+
+  docker:
+    name: Build production container image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t ofos:ci .
+
+      - name: Smoke-test the container
+        run: |
+          docker run -d --name ofos_ci -e PORT=8080 -p 8080:8080 ofos:ci
+          for i in $(seq 1 40); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080/healthz || true)
+            [ "$code" = "200" ] && break
+            sleep 0.5
+          done
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/healthz)" = "200"
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/menu)" = "200"
+          docker rm -f ofos_ci
