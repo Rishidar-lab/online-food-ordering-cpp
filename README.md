@@ -2,6 +2,13 @@
 
 [![CI](https://github.com/Rishidar-lab/online-food-ordering-cpp/actions/workflows/ci.yml/badge.svg)](https://github.com/Rishidar-lab/online-food-ordering-cpp/actions/workflows/ci.yml)
 
+## Status
+
+**MAINTAIN — academic project, complete for its brief.**
+
+- IMPLEMENTED / TESTED: storefront + admin back-office + relational schema; CI green on `main`.
+- NOT CLAIMED: production deployment or security review beyond the coursework scope.
+
 A complete, web-based food-ordering application for a small restaurant: a
 customer storefront and a protected administration back-office, backed by a
 relational database. It automates the whole manual ordering workflow (phone /
